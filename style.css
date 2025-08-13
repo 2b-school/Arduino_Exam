@@ -1,0 +1,628 @@
+:root {
+    /* الألوان */
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --primary-light: #93c5fd;
+    --secondary: #f59e0b;
+    --secondary-dark: #d97706;
+    --success: #10b981;
+    --success-dark: #059669;
+    --danger: #ef4444;
+    --danger-dark: #dc2626;
+    --light: #f8fafc;
+    --dark: #1e293b;
+    --gray: #64748b;
+    --gray-light: #e2e8f0;
+    --white: #ffffff;
+    
+    /* الظلال */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    
+    /* الانتقالات */
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s ease;
+}
+
+/* Reset وإعدادات عامة */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    background: linear-gradient(135deg, #f1f5f9, #e0e7ff);
+    color: var(--dark);
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/* التنسيق العام */
+.container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--gray-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+/* العناوين */
+h1, h2, h3 {
+    color: var(--primary);
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+h1 {
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    transform: translateX(50%);
+    width: 100px;
+    height: 4px;
+    background: var(--secondary);
+    border-radius: 2px;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin: 1.5rem 0 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+h2 i {
+    color: var(--secondary);
+}
+
+/* معلومات المدرسة */
+.school-info {
+    text-align: center;
+    background: var(--light);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    border-right: 4px solid var(--primary);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.school-info p {
+    font-size: 1.1rem;
+    color: var(--gray);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.school-info p:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: -0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 60%;
+    background: var(--gray-light);
+}
+
+/* الصفحات */
+.name-page, .quiz-page {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.name-page.active, .quiz-page.active {
+    display: block;
+}
+
+/* إدخال الاسم */
+.name-input {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.name-input p {
+    font-size: 1.3rem;
+    color: var(--dark);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.input-group {
+    position: relative;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.input-group i {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray);
+}
+
+.name-input input {
+    padding: 1rem 3rem 1rem 1rem;
+    font-size: 1.1rem;
+    border: 2px solid var(--gray-light);
+    border-radius: 0.75rem;
+    width: 100%;
+    background: var(--white);
+    color: var(--dark);
+    outline: none;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.name-input input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+/* الأزرار */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+}
+
+.btn-success {
+    background: linear-gradient(135deg, var(--success), var(--success-dark));
+    color: var(--white);
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    background: linear-gradient(135deg, var(--success-dark), var(--success));
+}
+
+.btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+}
+
+.btn-center {
+    display: block;
+    margin: 0 auto;
+}
+
+/* الأسئلة */
+.question {
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background: var(--white);
+    border-radius: 0.75rem;
+    border-right: 4px solid var(--primary);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.question:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.question-number {
+    position: absolute;
+    left: -10px;
+    top: -10px;
+    background: var(--primary);
+    color: var(--white);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    box-shadow: var(--shadow);
+}
+
+.question p {
+    font-size: 1.15rem;
+    color: var(--dark);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+/* الخيارات */
+.options {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: var(--light);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 1px solid var(--gray-light);
+}
+
+.option:hover {
+    background: #eff6ff;
+    border-color: var(--primary);
+    transform: translateX(-5px);
+}
+
+.option input {
+    margin-left: 0.75rem;
+    width: 1.2em;
+    height: 1.2em;
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+
+.option-label {
+    flex: 1;
+    cursor: pointer;
+}
+
+/* الإجابات الصحيحة */
+.correct-answer {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: rgba(16, 185, 129, 0.1);
+    border-radius: 0.5rem;
+    color: var(--success);
+    font-weight: 600;
+    display: none;
+    border-right: 3px solid var(--success);
+    animation: fadeIn 0.5s ease;
+}
+
+/* النتائج */
+#result {
+    margin-top: 2rem;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    text-align: center;
+    display: none;
+    animation: fadeIn 0.5s ease;
+    box-shadow: var(--shadow);
+}
+
+#result.success {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(236, 253, 245, 1));
+    color: var(--success);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+#result.fail {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(254, 242, 242, 1));
+    color: var(--danger);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+#result h2 {
+    color: inherit;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+#result p {
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+}
+
+/* التصحيح */
+#correction {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    background: linear-gradient(135deg, rgba(249, 250, 251, 1), rgba(241, 245, 249, 1));
+    color: var(--dark);
+    border: 1px solid var(--gray-light);
+    display: none;
+    animation: fadeIn 0.5s ease;
+    box-shadow: var(--shadow);
+}
+
+#correction h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+#correction p {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed var(--gray-light);
+}
+
+#correction strong {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* شريط التقدم */
+.progress-container {
+    width: 100%;
+    height: 8px;
+    background: var(--gray-light);
+    border-radius: 4px;
+    margin: 1rem 0 2rem;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 4px;
+    transition: width 0.5s ease;
+    width: 0%;
+}
+
+/* تأثيرات الاحتفال */
+.celebration-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.confetti {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: var(--primary);
+    opacity: 0;
+    animation: confettiFall 3s ease-out forwards;
+    border-radius: 50%;
+}
+
+.balloon {
+    position: absolute;
+    width: 30px;
+    height: 40px;
+    background: var(--primary);
+    border-radius: 50%;
+    opacity: 0;
+    animation: balloonRise 6s ease-in forwards;
+}
+
+.balloon::before {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 10px;
+    background: var(--secondary);
+    border-radius: 0 0 3px 3px;
+}
+
+.balloon::after {
+    content: '';
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 15px;
+    background: var(--gray);
+}
+
+/* الأشكال الزخرفية */
+.shape {
+    position: absolute;
+    opacity: 0.1;
+    z-index: -1;
+}
+
+.shape-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: var(--primary);
+    top: -50px;
+    right: -50px;
+}
+
+.shape-triangle {
+    width: 0;
+    height: 0;
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-bottom: 150px solid var(--secondary);
+    bottom: -50px;
+    left: -50px;
+    transform: rotate(45deg);
+}
+
+/* الرسوم المتحركة */
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg) scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes balloonRise {
+    0% {
+        transform: translateY(100vh) rotate(0deg) scale(0.5);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+        transform: translateY(80vh) rotate(10deg) scale(1);
+    }
+    100% {
+        transform: translateY(-100vh) rotate(360deg) scale(1.2);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* التكيف مع الأجهزة المحمولة */
+@media (max-width: 768px) {
+    .container {
+        margin: 1rem;
+        padding: 1.5rem;
+        border-radius: 0.75rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .school-info {
+        grid-template-columns: 1fr;
+        text-align: right;
+        padding: 1rem 0;
+    }
+
+    .school-info p {
+        padding: 0.5rem 1rem;
+        justify-content: flex-end;
+    }
+
+    .school-info p:not(:last-child)::after {
+        display: none;
+    }
+
+    .question {
+        padding: 1.25rem 1rem 1.25rem 1.5rem;
+    }
+
+    .question-number {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+
+    .btn-lg {
+        padding: 0.75rem 1.5rem;
+        font-size: 1.1rem;
+    }
+    
+    .name-input input {
+        padding: 0.75rem 2.5rem 0.75rem 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+    }
+    
+    .question p {
+        font-size: 1rem;
+    }
+    
+    .option {
+        padding: 0.5rem;
+        font-size: 0.95rem;
+    }
+}

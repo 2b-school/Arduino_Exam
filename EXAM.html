@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧠 اختبار الالكترونيــات و الأردوينـــو</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <div id="name-page" class="name-page active">
+            <h1><i class="fas fa-laptop"></i> اختبار الحاسوب</h1>
+            <div class="school-info">
+                <p><i class="fas fa-user-graduate"></i>اختبار كورس ARDUINO (2B-SCHOOL)</p>
+                <p><i class="fas fa-question-circle"></i> عدد الأسئلة: 40 سؤال</p>
+                <p><i class="fas fa-star"></i> الدرجة الكاملة: 40</p>
+            </div>
+            <div class="name-input">
+                <p><i class="fas fa-user"></i> اكتب اسمك لتبدأ الامتحان:</p>
+                <div class="input-group">
+                    <input type="text" id="studentName" placeholder="اسمك الثلاثي هنا" onkeypress="if(event.key === 'Enter') startQuiz()">
+                    <i class="fas fa-sign-in-alt"></i>
+                </div>
+            </div>
+            <button id="startQuiz" class="btn btn-primary btn-lg btn-center">
+                <i class="fas fa-play"></i> ابدأ الامتحان
+            </button>
+        </div>
+        <div id="quiz-page" class="quiz-page">
+            <h1><i class="fas fa-laptop"></i> اختبار الأردوينو</h1>
+            <div class="school-info">
+                <p><i class="fas fa-user"></i> الطالب: <span id="displayName"></span></p>
+                <p><i class="fas fa-book-open"></i> إعداد: م. محمد بسيوني – 2B-SCHOOL</p>
+                <p><i class="fas fa-question-circle"></i> الأسئلة: <span id="progressText">0/40</span></p>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div id="quiz">
+                <h2><i class="fas fa-check-circle"></i> أولًا: صح أو خطأ</h2>
+                     <div class="question" data-answer="True">
+                <div class="question-number">1</div>
+                <p>البطارية تعتبر مصدر للطاقة الكهربائية.</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q1" value="True">
+                        <span class="option-label">نعم</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1" value="False">
+                        <span class="option-label">لا</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: صح (✔)
+                </div>
+            </div>
+            
+            <div class="question" data-answer="True">
+                <div class="question-number">2</div>
+                <p>المقاومة الحرارية تقل قيمتها عندما ترتفع درجة الحرارة.</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q2" value="True">
+                        <span class="option-label">نعم</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2" value="False">
+                        <span class="option-label">لا</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: صح (✔) - في المقاومة الحرارية (Thermistor) من نوع NTC
+                </div>
+            </div>
+            
+            <div class="question" data-answer="False">
+                <div class="question-number">3</div>
+                <p>الدائرة الكهربائية المفتوحة تسمح بمرور التيار الكهربائي.</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q3" value="True">
+                        <span class="option-label">نعم</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3" value="False">
+                        <span class="option-label">لا</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: خطأ (✘) - الدائرة المفتوحة تمنع مرور التيار
+                </div>
+            </div>
+            
+            <div class="question" data-answer="False">
+                <div class="question-number">4</div>
+                <p>الطرف الطويل في الـ LED يكون سالب.</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q4" value="True">
+                        <span class="option-label">نعم</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4" value="False">
+                        <span class="option-label">لا</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: خطأ (✘) - الطرف الطويل في الـ LED هو الموجب
+                </div>
+            </div>
+            
+            <div class="question" data-answer="True">
+                <div class="question-number">5</div>
+                <p>الـ Breadboard يُستخدم لتوصيل المكونات بدون لحام.</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q5" value="True">
+                        <span class="option-label">نعم</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5" value="False">
+                        <span class="option-label">لا</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: صح (✔)
+                </div>
+            </div>
+            
+            <div class="question" data-answer="True">
+                <div class="question-number">6</div>
+                <p>برنامج Tinkercad يساعدنا في محاكاة الدوائر الكهربائية قبل تنفيذها.</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q6" value="True">
+                        <span class="option-label">نعم</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q6" value="False">
+                        <span class="option-label">لا</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: صح (✔)
+                </div>
+            </div>
+            
+            <div class="question" data-answer="True">
+                <div class="question-number">7</div>
+                <p>المتغيرات في البرمجة تساعد في جعل الكود أسهل وأقصر.</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q7" value="True">
+                        <span class="option-label">نعم</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q7" value="False">
+                        <span class="option-label">لا</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: صح (✔)
+                </div>
+            </div>
+            
+            <div class="question" data-answer="True">
+                <div class="question-number">8</div>
+                <p>الأمر delay(1000); يعني تأخير التنفيذ لمدة ثانية واحدة.</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q8" value="True">
+                        <span class="option-label">نعم</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q8" value="False">
+                        <span class="option-label">لا</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: صح (✔) - 1000 مللي ثانية = 1 ثانية
+                </div>
+            </div>
+            
+            <div class="question" data-answer="False">
+                <div class="question-number">9</div>
+                <p>الزر Button يتم توصيله في الدائرة على طرف موجب فقط.</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q9" value="True">
+                        <span class="option-label">نعم</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q9" value="False">
+                        <span class="option-label">لا</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: خطأ (✘) - يجب توصيله مع مقاومة pull-up أو pull-down
+                </div>
+            </div>
+            
+            <div class="question" data-answer="True">
+                <div class="question-number">10</div>
+                <p>أمر pinMode يُستخدم لتحديد إذا كان الطرف دخل أو خرج.</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q10" value="True">
+                        <span class="option-label">نعم</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q10" value="False">
+                        <span class="option-label">لا</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: صح (✔) - مثال: pinMode(13, OUTPUT);
+                </div>
+            </div>
+
+            <h2><i class="fas fa-question-circle"></i> ثانيًا: اختر الإجابة الصحيحة</h2>
+
+            <div class="question" id="q11" data-answer="d">
+                <div class="question-number">11</div>
+                <p>أي من التالي هو مكوّن من مكونات الدائرة الكهربائية؟</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q11" value="a">
+                        <span class="option-label">أ) البطارية</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q11" value="b">
+                        <span class="option-label">ب) السلك</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q11" value="c">
+                        <span class="option-label">ج) المقاومة</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q11" value="d">
+                        <span class="option-label">د) جميع ما سبق</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: د) جميع ما سبق
+                </div>
+            </div>
+
+            <div class="question" id="q12" data-answer="b">
+                <div class="question-number">12</div>
+                <p>وظيفة المقاومة في الدائرة هي:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q12" value="a">
+                        <span class="option-label">أ) زيادة الجهد</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q12" value="b">
+                        <span class="option-label">ب) التحكم في شدة التيار</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q12" value="c">
+                        <span class="option-label">ج) تخزين الطاقة</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q12" value="d">
+                        <span class="option-label">د) إصدار صوت</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: ب) التحكم في شدة التيار
+                </div>
+            </div>
+
+            <div class="question" id="q13" data-answer="b">
+                <div class="question-number">13</div>
+                <p>المقاومة الثابتة:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q13" value="a">
+                        <span class="option-label">أ) تتغير قيمتها حسب الضوء</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q13" value="b">
+                        <span class="option-label">ب) قيمتها ثابتة دائمًا</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q13" value="c">
+                        <span class="option-label">ج) تتغير حسب الحرارة</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q13" value="d">
+                        <span class="option-label">د) ليست مكوّن كهربائي</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: ب) قيمتها ثابتة دائمًا
+                </div>
+            </div>
+
+            <div class="question" id="q14" data-answer="c">
+                <div class="question-number">14</div>
+                <p>المقاومة الضوئية تتأثر بـ:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q14" value="a">
+                        <span class="option-label">أ) الحرارة</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q14" value="b">
+                        <span class="option-label">ب) الضغط</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q14" value="c">
+                        <span class="option-label">ج) شدة الضوء</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q14" value="d">
+                        <span class="option-label">د) الرطوبة</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: ج) شدة الضوء
+                </div>
+            </div>
+
+            <div class="question" id="q15" data-answer="b">
+                <div class="question-number">15</div>
+                <p>المقاومة الحرارية تتأثر بـ:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q15" value="a">
+                        <span class="option-label">أ) الصوت</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q15" value="b">
+                        <span class="option-label">ب) الحرارة</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q15" value="c">
+                        <span class="option-label">ج) الضوء</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q15" value="d">
+                        <span class="option-label">د) التيار</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: ب) الحرارة
+                </div>
+            </div>
+
+            <div class="question" id="q16" data-answer="b">
+                <div class="question-number">16</div>
+                <p>في الدائرة المغلقة:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q16" value="a">
+                        <span class="option-label">أ) التيار لا يمر</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q16" value="b">
+                        <span class="option-label">ب) التيار يمر</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q16" value="c">
+                        <span class="option-label">ج) لا يوجد مصدر طاقة</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q16" value="d">
+                        <span class="option-label">د) المقاومة لا تعمل</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: ب) التيار يمر
+                </div>
+            </div>
+
+            <div class="question" id="q17" data-answer="b">
+                <div class="question-number">17</div>
+                <p>في الدائرة المفتوحة:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q17" value="a">
+                        <span class="option-label">أ) التيار يمر</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q17" value="b">
+                        <span class="option-label">ب) التيار لا يمر</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q17" value="c">
+                        <span class="option-label">ج) الجهد يزيد</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q17" value="d">
+                        <span class="option-label">د) البطارية لا تعمل</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: ب) التيار لا يمر
+                </div>
+            </div>
+
+            <div class="question" id="q18" data-answer="a">
+                <div class="question-number">18</div>
+                <p>عند توصيل Push Button:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q18" value="a">
+                        <span class="option-label">أ) نوصل طرف بالموجب أو طرف بالسالب</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q18" value="b">
+                        <span class="option-label">ب) نوصل الطرفين بالموجب</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q18" value="c">
+                        <span class="option-label">ج) نوصل الطرفين بالسالب</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q18" value="d">
+                        <span class="option-label">د) لا فرق في التوصيل</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: أ) نوصل طرف بالموجب وطرف بالسالب
+                </div>
+            </div>
+
+            <div class="question" id="q19" data-answer="b">
+                <div class="question-number">19</div>
+                <p>الفرق بين Push Button و Button:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q19" value="a">
+                        <span class="option-label">أ) لا يوجد فرق</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q19" value="b">
+                        <span class="option-label">ب) الـ Push Button يعمل عند الضغط فقط</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q19" value="c">
+                        <span class="option-label">ج) الـ Button يعمل طوال الوقت</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q19" value="d">
+                        <span class="option-label">د) الـ Push Button أكبر حجمًا</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: ب) الـ Push Button يعمل عند الضغط فقط
+                </div>
+            </div>
+
+            <div class="question" id="q20" data-answer="b">
+                <div class="question-number">20</div>
+                <p>الـ RGB LED:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q20" value="a">
+                        <span class="option-label">أ) لمبة بها لون واحد</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q20" value="b">
+                        <span class="option-label">ب) لمبة يمكنها إنتاج ألوان متعددة</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q20" value="c">
+                        <span class="option-label">ج) جرس كهربائي</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q20" value="d">
+                        <span class="option-label">د) نوع من البطاريات</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: ب) لمبة يمكنها إنتاج ألوان متعددة
+                </div>
+            </div>
+
+            <div class="question" id="q21" data-answer="a">
+                <div class="question-number">21</div>
+                <p>الطرف الطويل في الـ LED يكون:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q21" value="a">
+                        <span class="option-label">أ) موجب</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q21" value="b">
+                        <span class="option-label">ب) سالب</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q21" value="c">
+                        <span class="option-label">ج) لا فرق</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q21" value="d">
+                        <span class="option-label">د) أرضي</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: أ) موجب
+                </div>
+            </div>
+
+            <div class="question" id="q22" data-answer="b">
+                <div class="question-number">22</div>
+                <p>الجرس الكهربائي يستخدم في:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q22" value="a">
+                        <span class="option-label">أ) إنتاج ضوء</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q22" value="b">
+                        <span class="option-label">ب) إصدار صوت</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q22" value="c">
+                        <span class="option-label">ج) تخزين طاقة</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q22" value="d">
+                        <span class="option-label">د) التحكم بالتيار</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: ب) إصدار صوت
+                </div>
+            </div>
+
+            <div class="question" id="q23" data-answer="b">
+                <div class="question-number">23</div>
+                <p>الـ Breadboard يُستخدم في:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q23" value="a">
+                        <span class="option-label">أ) لحام المكونات</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q23" value="b">
+                        <span class="option-label">ب) تجميع المكونات بدون لحام</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q23" value="c">
+                        <span class="option-label">ج) تشغيل Arduino فقط</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q23" value="d">
+                        <span class="option-label">د) تخزين الطاقة</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: ب) تجميع المكونات بدون لحام
+                </div>
+            </div>
+
+            <div class="question" id="q24" data-answer="b">
+                <div class="question-number">24</div>
+                <p>برنامج Tinkercad يساعد في:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q24" value="a">
+                        <span class="option-label">أ) تصميم مواقع</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q24" value="b">
+                        <span class="option-label">ب) محاكاة دوائر إلكترونية</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q24" value="c">
+                        <span class="option-label">ج) تعديل صور</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q24" value="d">
+                        <span class="option-label">د) كتابة نصوص</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: ب) محاكاة دوائر إلكترونية
+                </div>
+            </div>
+
+            <div class="question" id="q25" data-answer="b">
+                <div class="question-number">25</div>
+                <p>الـ Arduino هو:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q25" value="a">
+                        <span class="option-label">أ) برنامج للصور</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q25" value="b">
+                        <span class="option-label">ب) لوحة تحكم إلكترونية للبرمجة</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q25" value="c">
+                        <span class="option-label">ج) نوع من البطاريات</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q25" value="d">
+                        <span class="option-label">د) سلك توصيل</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: ب) لوحة تحكم إلكترونية للبرمجة
+                </div>
+            </div>
+
+            <div class="question" id="q26" data-answer="b">
+                <div class="question-number">26</div>
+                <p>في البرمجة، النوع int يعني:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q26" value="a">
+                        <span class="option-label">أ) نص</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q26" value="b">
+                        <span class="option-label">ب) عدد صحيح</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q26" value="c">
+                        <span class="option-label">ج) لون</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q26" value="d">
+                        <span class="option-label">د) قيمة منطقية</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: ب) عدد صحيح
+                </div>
+            </div>
+
+            <div class="question" id="q27" data-answer="b">
+                <div class="question-number">27</div>
+                <p>في السطر int button = 5; اسم المتغير هو:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q27" value="a">
+                        <span class="option-label">أ) int</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q27" value="b">
+                        <span class="option-label">ب) button</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q27" value="c">
+                        <span class="option-label">ج) 5</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q27" value="d">
+                        <span class="option-label">د) =</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: ب) button
+                </div>
+            </div>
+
+            <div class="question" id="q28" data-answer="b">
+                <div class="question-number">28</div>
+                <p>في السطر نفسه، نوع المتغير هو:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q28" value="a">
+                        <span class="option-label">أ) نص</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q28" value="b">
+                        <span class="option-label">ب) عدد صحيح (int)</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q28" value="c">
+                        <span class="option-label">ج) جملة برمجية</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q28" value="d">
+                        <span class="option-label">د) Boolean</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: ب) عدد صحيح (int)
+                </div>
+            </div>
+
+            <div class="question" id="q29" data-answer="b">
+                <div class="question-number">29</div>
+                <p>أمر void setup يُستخدم:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q29" value="a">
+                        <span class="option-label">أ) لتكرار الكود باستمرار</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q29" value="b">
+                        <span class="option-label">ب) لتنفيذ الأكواد مرة واحدة عند التشغيل</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q29" value="c">
+                        <span class="option-label">ج) لتخزين بيانات</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q29" value="d">
+                        <span class="option-label">د) لإيقاف البرنامج</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: ب) لتنفيذ الأكواد مرة واحدة عند التشغيل
+                </div>
+            </div>
+
+            <div class="question" id="q30" data-answer="a">
+                <div class="question-number">30</div>
+                <p>أمر void loop يُستخدم:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q30" value="a">
+                        <span class="option-label">أ) لتكرار الأكواد باستمرار</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q30" value="b">
+                        <span class="option-label">ب) لتنفيذ الأكواد مرة واحدة</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q30" value="c">
+                        <span class="option-label">ج) لحذف الأكواد</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q30" value="d">
+                        <span class="option-label">د) لتحديد المتغيرات</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: أ) لتكرار الأكواد باستمرار
+                </div>
+            </div>
+
+            <div class="question" id="q31" data-answer="a">
+                <div class="question-number">31</div>
+                <p>أمر pinMode يُستخدم لـ:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q31" value="a">
+                        <span class="option-label">أ) تحديد إذا كان الطرف دخل أو خرج</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q31" value="b">
+                        <span class="option-label">ب) إرسال إشارة صوتية</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q31" value="c">
+                        <span class="option-label">ج) تشغيل المحرك</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q31" value="d">
+                        <span class="option-label">د) إيقاف التيار</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: أ) تحديد إذا كان الطرف دخل أو خرج
+                </div>
+            </div>
+
+            <div class="question" id="q32" data-answer="b">
+                <div class="question-number">32</div>
+                <p>أمر digitalWrite يُستخدم لـ:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q32" value="a">
+                        <span class="option-label">أ) قراءة قيمة من الطرف</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q32" value="b">
+                        <span class="option-label">ب) كتابة قيمة HIGH أو LOW للطرف</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q32" value="c">
+                        <span class="option-label">ج) حذف المتغيرات</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q32" value="d">
+                        <span class="option-label">د) تشغيل Arduino</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: ب) كتابة قيمة HIGH أو LOW للطرف
+                </div>
+            </div>
+
+            <div class="question" id="q33" data-answer="b">
+                <div class="question-number">33</div>
+                <p>قيمة HIGH تعني:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q33" value="a">
+                        <span class="option-label">أ) 0 فولت</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q33" value="b">
+                        <span class="option-label">ب) 5 فولت</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q33" value="c">
+                        <span class="option-label">ج) لا يوجد تيار</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q33" value="d">
+                        <span class="option-label">د) مقاومة عالية</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: ب) 5 فولت
+                </div>
+            </div>
+
+            <div class="question" id="q34" data-answer="a">
+                <div class="question-number">34</div>
+                <p>قيمة LOW تعني:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q34" value="a">
+                        <span class="option-label">أ) 0 فولت</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q34" value="b">
+                        <span class="option-label">ب) 5 فولت</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q34" value="c">
+                        <span class="option-label">ج) تيار مرتفع</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q34" value="d">
+                        <span class="option-label">د) جهد ثابت</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: أ) 0 فولت
+                </div>
+            </div>
+
+            <div class="question" id="q35" data-answer="a">
+                <div class="question-number">35</div>
+                <p>INPUT تُستخدم مع:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q35" value="a">
+                        <span class="option-label">أ) pinMode لتحديد الطرف كدخل</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q35" value="b">
+                        <span class="option-label">ب) digitalWrite لكتابة قيمة</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q35" value="c">
+                        <span class="option-label">ج) delay لتأخير الوقت</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q35" value="d">
+                        <span class="option-label">د) void loop</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: أ) pinMode لتحديد الطرف كدخل
+                </div>
+            </div>
+
+            <div class="question" id="q36" data-answer="a">
+                <div class="question-number">36</div>
+                <p>OUTPUT تُستخدم مع:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q36" value="a">
+                        <span class="option-label">أ) pinMode لتحديد الطرف كخرج</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q36" value="b">
+                        <span class="option-label">ب) digitalRead لقراءة قيمة</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q36" value="c">
+                        <span class="option-label">ج) int لتحديد نوع المتغير</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q36" value="d">
+                        <span class="option-label">د) delay لتأخير</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: أ) pinMode لتحديد الطرف كخرج
+                </div>
+            </div>
+
+            <div class="question" id="q37" data-answer="d">
+                <div class="question-number">37</div>
+                <p>فائدة المتغيرات في البرمجة:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q37" value="a">
+                        <span class="option-label">أ) تخزين البيانات</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q37" value="b">
+                        <span class="option-label">ب) توفير وقت كتابة الكود</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q37" value="c">
+                        <span class="option-label">ج) جعل الكود أسهل للقراءة</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q37" value="d">
+                        <span class="option-label">د) جميع ما سبق</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: د) جميع ما سبق
+                </div>
+            </div>
+
+            <div class="question" id="q38" data-answer="b">
+                <div class="question-number">38</div>
+                <p>الأمر delay(1000); يعني:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q38" value="a">
+                        <span class="option-label">أ) توقف 1 مللي ثانية</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q38" value="b">
+                        <span class="option-label">ب) توقف 1 ثانية</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q38" value="c">
+                        <span class="option-label">ج) توقف 100 ثانية</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q38" value="d">
+                        <span class="option-label">د) توقف نصف ثانية</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: ب) توقف 1 ثانية (1000 مللي ثانية = 1 ثانية)
+                </div>
+            </div>
+
+            <div class="question" id="q39" data-answer="a">
+                <div class="question-number">39</div>
+                <p>علامة ; في البرمجة تُستخدم لـ:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q39" value="a">
+                        <span class="option-label">أ) نهاية الجملة البرمجية</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q39" value="b">
+                        <span class="option-label">ب) بداية الكود</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q39" value="c">
+                        <span class="option-label">ج) التعليق على الكود</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q39" value="d">
+                        <span class="option-label">د) زيادة السرعة</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: أ) نهاية الجملة البرمجية
+                </div>
+            </div>
+
+            <div class="question" id="q40" data-answer="a">
+                <div class="question-number">40</div>
+                <p>في Arduino، قراءة إشارة من زر تكون عادةً باستخدام:</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q40" value="a">
+                        <span class="option-label">أ) digitalRead</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q40" value="b">
+                        <span class="option-label">ب) digitalWrite</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q40" value="c">
+                        <span class="option-label">ج) pinMode</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q40" value="d">
+                        <span class="option-label">د) void setup</span>
+                    </label>
+                </div>
+                <div class="correct-answer" style="display: none;">
+                    <i class="fas fa-check-circle"></i> الإجابة الصحيحة: أ) digitalRead
+                </div>
+            </div>
+
+
+
+</div>            <button id="submit" class="btn btn-primary btn-lg btn-center" disabled>
+                <i class="fas fa-paper-plane"></i> سلم الإجابات
+            </button>
+            <div id="result"></div>
+            <div id="correction"></div>
+        </div>
+    </div>
+    <div id="celebration" class="celebration-effect" style="display: none;"></div>
+    <audio id="victorySound" src="https://www.soundjay.com/buttons/sounds/button-09.mp3" preload="auto" muted></audio>
+    <script src="script.js"></script>
+</body>
+</html>
