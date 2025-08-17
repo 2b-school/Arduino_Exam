@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لعبة اختبار الكلمات - عالم الآثار الصغير</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <div class="background-animation"></div>
+    
+    <!-- صفحة البداية -->
+    <div class="container welcome-page animate__animated animate__fadeIn" id="welcomePage">
+        <div class="header">
+            <h1 class="title">🏛️ عالم الآثار الصغير 🏺</h1>
+            <div class="subtitle">اختبار ممتع لتعلم مصطلحات الآثار</div>
+        </div>
+        
+        <div class="welcome-content">
+            <div class="welcome-image">
+<img src="2B.jpg" alt="صورة عالم آثار" class="archaeologist-img">            </div>
+            
+            <div class="welcome-form">
+                <div class="form-group">
+                    <label for="studentName">ما اسمك يا بطل؟</label>
+                    <input type="text" id="studentName" placeholder="اكتب اسمك هنا..." class="name-input">
+                </div>
+                
+                <div class="form-group">
+                    <label>اختر نوع الاختبار:</label>
+                    <div class="test-options">
+                        <button class="test-option-btn active" data-test="arabicToEnglish">
+                            <span>عربي ➔ إنجليزي</span>
+                            <i class="icon">🌍</i>
+                        </button>
+                        <button class="test-option-btn" data-test="englishToArabic">
+                            <span>إنجليزي ➔ عربي</span>
+                            <i class="icon">🔠</i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>اختر نمط اللعب:</label>
+                    <div class="game-modes">
+                        <button class="game-mode-btn active" data-mode="multiple">
+                            <i class="icon">🔘</i>
+                            <span>اختيار من متعدد</span>
+                        </button>
+                        <button class="game-mode-btn" data-mode="typing">
+                            <i class="icon">✍️</i>
+                            <span>كتابة الإجابة</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <button class="start-btn animate__animated animate__pulse" id="startBtn">
+                    ابدأ الاختبار!
+                    <i class="icon">🚀</i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- صفحة الاختبار -->
+    <div class="container test-page" id="testPage" style="display: none;">
+        <div class="test-header">
+            <div class="student-info">
+                <span id="studentNameDisplay"></span>
+                <span class="score-display">النقاط: <span id="currentScore">0</span></span>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+                <div class="progress-text" id="progressText">1/15</div>
+            </div>
+        </div>
+        
+        <div class="question-container animate__animated animate__fadeIn" id="questionContainer">
+            <div class="question-card">
+                <div class="question" id="question"></div>
+                
+                <div class="options-container" id="optionsContainer"></div>
+                
+                <div class="typing-container" id="typingContainer" style="display: none;">
+                    <input type="text" id="answerInput" placeholder="اكتب الإجابة هنا..." class="answer-input">
+                    <button class="check-answer-btn" id="checkAnswer">تحقق من الإجابة</button>
+                </div>
+                
+                <div class="feedback-message" id="feedbackMessage"></div>
+            </div>
+            
+            <button class="next-btn" id="nextBtn">السؤال التالي <i class="icon">👉</i></button>
+        </div>
+    </div>
+    
+    <!-- صفحة النتائج -->
+    <div class="container result-page" id="resultPage" style="display: none;">
+        <div class="result-content animate__animated" id="resultContent">
+            <div class="trophy-container" id="trophyContainer">
+                <div class="trophy animate__animated" id="trophy">🏆</div>
+                <div class="stars">
+                    <div class="star">⭐</div>
+                    <div class="star">🌟</div>
+                    <div class="star">✨</div>
+                </div>
+            </div>
+            
+            <h2 class="result-title" id="resultTitle"></h2>
+            <div class="student-result-name" id="studentResultName"></div>
+            
+            <div class="score-display-final">
+                <span>درجتك النهائية:</span>
+                <span class="final-score" id="finalScore"></span>
+            </div>
+            
+            <div class="result-message" id="resultMessage"></div>
+            
+            <div class="result-actions">
+                <button class="action-btn play-again-btn" id="playAgainBtn">
+                    <i class="icon">🔄</i> العب مرة أخرى
+                </button>
+                <button class="action-btn change-test-btn" id="changeTestBtn">
+                    <i class="icon">🔀</i> اختبار مختلف
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <audio id="correctSound" src="https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-tone-2870.mp3"></audio>
+    <audio id="wrongSound" src="https://assets.mixkit.co/sfx/preview/mixkit-wrong-answer-fail-notification-946.mp3"></audio>
+    <audio id="winSound" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3"></audio>
+    
+    <script src="script.js"></script>
+</body>
+</html>
